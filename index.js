@@ -21,7 +21,7 @@ const app = (0, express_1.default)();
 const port = 3000;
 function getUser(username, pagenum) {
     return __awaiter(this, void 0, void 0, function* () {
-        const accessCode = yield (0, psn_api_2.exchangeNpssoForCode)("HLPO2BgNooPoBFLN8eFynPnSghub75pyAHOrhfZFmqctFJdpb1YKnWNzuj8M93PK");
+        const accessCode = yield (0, psn_api_2.exchangeNpssoForCode)(process.env.KEY);
         const authorization = yield (0, psn_api_2.exchangeCodeForAccessToken)(accessCode);
         const allAccountsSearchResults = yield (0, psn_api_2.makeUniversalSearch)(authorization, username, "SocialAllAccounts");
         const targetAccountId = allAccountsSearchResults.domainResponses[0].results[0].socialMetadata.accountId;
@@ -34,18 +34,17 @@ function getUser(username, pagenum) {
 }
 function getUserCount(username) {
     return __awaiter(this, void 0, void 0, function* () {
-        const accessCode = yield (0, psn_api_2.exchangeNpssoForCode)("HLPO2BgNooPoBFLN8eFynPnSghub75pyAHOrhfZFmqctFJdpb1YKnWNzuj8M93PK");
+        const accessCode = yield (0, psn_api_2.exchangeNpssoForCode)(process.env.KEY);
         const authorization = yield (0, psn_api_2.exchangeCodeForAccessToken)(accessCode);
         const allAccountsSearchResults = yield (0, psn_api_2.makeUniversalSearch)(authorization, username, "SocialAllAccounts");
         const targetAccountId = allAccountsSearchResults.domainResponses[0].results[0].socialMetadata.accountId;
         const trophyTitles = yield (0, psn_api_2.getUserTitles)(authorization, targetAccountId);
-        console.log(trophyTitles.totalItemCount);
         return trophyTitles.totalItemCount;
     });
 }
 function profile(username) {
     return __awaiter(this, void 0, void 0, function* () {
-        const accessCode = yield (0, psn_api_2.exchangeNpssoForCode)("HLPO2BgNooPoBFLN8eFynPnSghub75pyAHOrhfZFmqctFJdpb1YKnWNzuj8M93PK");
+        const accessCode = yield (0, psn_api_2.exchangeNpssoForCode)(process.env.KEY);
         const authorization = yield (0, psn_api_2.exchangeCodeForAccessToken)(accessCode);
         const allAccountsSearchResults = yield (0, psn_api_2.makeUniversalSearch)(authorization, username, "SocialAllAccounts");
         const targetAccountId = allAccountsSearchResults.domainResponses[0].results[0].socialMetadata

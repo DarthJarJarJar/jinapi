@@ -13,7 +13,7 @@ const app = express()
 const port = 3000
 
 async function getUser(username: any, pagenum:number) {
-    const accessCode = await exchangeNpssoForCode("HLPO2BgNooPoBFLN8eFynPnSghub75pyAHOrhfZFmqctFJdpb1YKnWNzuj8M93PK");
+    const accessCode = await exchangeNpssoForCode(process.env.KEY!);
     const authorization = await exchangeCodeForAccessToken(accessCode);
   
     const allAccountsSearchResults = await makeUniversalSearch(
@@ -33,7 +33,7 @@ async function getUser(username: any, pagenum:number) {
     }
 
 async function getUserCount(username: any) {
-    const accessCode = await exchangeNpssoForCode("HLPO2BgNooPoBFLN8eFynPnSghub75pyAHOrhfZFmqctFJdpb1YKnWNzuj8M93PK");
+    const accessCode = await exchangeNpssoForCode(process.env.KEY!);
     const authorization = await exchangeCodeForAccessToken(accessCode);
       
     const allAccountsSearchResults = await makeUniversalSearch(
@@ -50,7 +50,7 @@ async function getUserCount(username: any) {
     }
 
 async function profile(username: any) {
-    const accessCode = await exchangeNpssoForCode("HLPO2BgNooPoBFLN8eFynPnSghub75pyAHOrhfZFmqctFJdpb1YKnWNzuj8M93PK");
+    const accessCode = await exchangeNpssoForCode(process.env.KEY!);
     const authorization = await exchangeCodeForAccessToken(accessCode);
     const allAccountsSearchResults = await makeUniversalSearch(
         authorization,
